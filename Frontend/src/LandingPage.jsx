@@ -27,7 +27,7 @@ function LandingPage() {
                         <button
                             onClick={() => navigate('/upload-audio')}
                             className="btn px-6 py-3 text-sm uppercase tracking-wider font-medium">
-                            Start Designing
+                            Start Designing 
                         </button>
 
                         <div className='flex items-center space-x-3'>
