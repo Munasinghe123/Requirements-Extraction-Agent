@@ -5,6 +5,7 @@ import sis3 from './Images/sis3.jpg';
 import Hero from './Images/hero.png';
 import HeroCanvas from './components/HeroCanvas';
 
+
 import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
@@ -12,8 +13,7 @@ function LandingPage() {
     const navigate = useNavigate()
 
     return (
-        <div className='relative h-screen w-full grid grid-cols-2 bg-black px-30'>
-
+        <div className='relative h-screen w-full grid grid-cols-2 bg-transparent  px-30'>
             <div className='relative h-full flex items-start justify-center flex-col '>
                 <div className='space-y-8 -mt-11'>
                     <h1 className='text-white text-7xl uppercase font-bold'

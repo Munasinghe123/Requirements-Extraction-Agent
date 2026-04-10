@@ -3,10 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Home'
 import UploadAudio from './UploadAudio'
 import Header from './components/Header'
+import StarBackground from './components/StartBackGround'
 
 function App() {
   return (
     <BrowserRouter>
+      <StarBackground />
       <Header />
 
       <Routes>
