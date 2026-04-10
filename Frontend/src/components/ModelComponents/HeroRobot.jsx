@@ -13,7 +13,7 @@ function HeroRobot() {
     useEffect(() => {
     scene.traverse((child) => {
         if (child.isBone || child.isMesh) {
-            console.log(child.name); // list everything, find the head
+            console.log(child.name); 
         }
     });
 }, [scene]);
@@ -21,12 +21,10 @@ function HeroRobot() {
     useFrame((state) => {
         const { pointer } = state
 
-        // target rotation based on mouse
        
         const targetX = pointer.x * 0.5   // left/right
 
-        // smooth interpolation (LERP)
-      
+       
         groupRef.current.rotation.y += (targetX - groupRef.current.rotation.y) * 0.05
     })
 
