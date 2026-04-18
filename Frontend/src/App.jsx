@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Home'
-import UploadAudio from './UploadAudio'
+import Home from './Pages/Home'
+import UploadAudio from './Pages/UploadAudio'
 import Header from './components/Header'
 import StarBackground from './components/StartBackGround'
+
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/upload-audio' element={<UploadAudio />} />
       </Routes>
+     
     </BrowserRouter>
   )
 }

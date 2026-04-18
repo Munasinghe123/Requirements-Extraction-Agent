@@ -10,30 +10,30 @@ def clean_json(content):
 
 def extract_requirements(transcript: str):
     prompt = f"""
-You are a software requirements analyst.
+                You are a software requirements analyst.
 
-Extract ONLY software/system-related requirements.
+                Extract ONLY software/system-related requirements.
 
-If the conversation does NOT contain software requirements,
-return EXACTLY this JSON and NOTHING ELSE:
+                If the conversation does NOT contain software requirements,
+                return EXACTLY this JSON and NOTHING ELSE:
 
-{{
-  "functional": [],
-  "non_functional": []
-}}
+                {{
+                "functional": [],
+                "non_functional": []
+                }}
 
-Rules:
-- Output MUST be valid JSON
-- No explanations
-- No markdown
-- No extra text
+                Rules:
+                - Output MUST be valid JSON
+                - No explanations
+                - No markdown
+                - No extra text
 
-Conversation:
-{transcript}
-"""
+                Conversation:
+                {transcript}
+                """
 
     response = ollama.chat(
-        model="gemma3:4b",
+        model="qwen3:8b",
         messages=[{"role": "user", "content": prompt}]
     )
 

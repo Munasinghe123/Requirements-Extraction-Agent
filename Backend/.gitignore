@@ -10,3 +10,4 @@ build/
 .pytest_cache/
 test.mp3
 *.mp3
+temp/
