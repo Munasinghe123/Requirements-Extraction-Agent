@@ -67,7 +67,7 @@ function UploadAudio() {
                     </div>
                 </div>
 
-                <div className='overflow-hidden h-[85%] absolute bottom-0 right-20'>
+                <div className='overflow-hidden h-[85%] opacity-90 absolute bottom-0 right-20'>
                     <img
                         src={audio}
                         className='w-full h-full object-contain'

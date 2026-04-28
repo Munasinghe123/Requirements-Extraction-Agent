@@ -12,12 +12,10 @@ function Footer() {
 
         {/* Brand */}
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-9 h-9  rounded-2xl flex items-center justify-center">
-            <img src={Logo} className="h-16 w-19 object-contain rounded-2xl" />
+          <div className="w-32 h-32  rounded-2xl flex items-center justify-center ">
+            <img src={Logo} className="h-32 w-32 object-contain rounded-2xl" />
           </div>
-          <span className="font-playfair font-bold text-lg text-white">
-            System Design
-          </span>
+        
         </Link>
 
         {/* Links */}
