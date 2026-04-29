@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 
 import requirements from '../Images/OurAgents/reqs.png'
 import highlevel from '../Images/OurAgents/highlevel.png'
-import lowlevel from '../Images/OurAgents/low-level.png'
+import lowlevel from '../Images/OurAgents/lowlevel.png'
 import ui from '../Images/OurAgents/ui.png'
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,36 +66,57 @@ function OurAgents({ className }) {
         offset: null,
         node: (
           <div
-            className=" relative
-              rounded-2xl p-6
-              border border-cyan-400/10 
-              overflow-hidden 
+            className="
+              relative w-full max-w-sm mx-auto
+              p-6 rounded-[32px]
+              flex flex-col items-center gap-5
+
+              bg-white/[0.06]
+              backdrop-blur-2xl
+
+              border border-cyan-400/20
+              shadow-[0_0_30px_rgba(34,211,238,0.12)]
+
+              overflow-hidden
             "
           >
+            {/* glow layer */}
+            <div className="
+                  absolute inset-0
+                  bg-gradient-to-br
+                  from-cyan-400/10
+                  via-transparent
+                  to-blue-500/10
+                  pointer-events-none
+                " />
+
             <img
               src={requirements}
               className="
-              absolute inset-0
-              h-full w-full
-              transition duration-700 rounded-2xl
-            "
+                relative z-10
+                w-40 h-40
+                rounded-full
+                object-cover
+
+                border border-cyan-300/30
+                shadow-[0_0_25px_rgba(34,211,238,0.25)]
+              "
             />
 
-            <div
-              className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-[#041827]/70
-              via-[#082f49]/45
-              to-transparent
-            "
-            />
-            <div className="relative bg-black-300/50 z-10 space-y-4 rounded-[calc(theme(borderRadius.2xl)-1.5px)]  p-6 md:h-40 ">
-              <h1 className="font-['Orbitron'] text-3xl font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.25)]">
+            <div className="relative z-10 text-center space-y-3">
+              <h1 className="
+                font-['Orbitron']
+                text-2xl font-bold
+                tracking-[0.15em]
+                text-white
+              ">
                 Requirements Intelligence
               </h1>
-              <p className='text-md font-medium tracking-wide leading-relaxed text-white'>
-                Transforms raw conversations into structured requirements
+
+              <p className="text-cyan-100/75 leading-relaxed">
+                Transforms raw conversations into
+                <br />
+                structured requirements
               </p>
             </div>
           </div>
@@ -106,32 +127,64 @@ function OurAgents({ className }) {
         offset: null,
         node: (
           <div
-            className=" relative
-              rounded-2xl p-6
-              border border-cyan-400/10 
-              overflow-hidden 
+            className="
+              relative w-full max-w-sm mx-auto
+              p-6 rounded-[32px]
+
+              flex flex-col items-center text-center gap-5
+
+              bg-white/[0.06]
+              backdrop-blur-2xl
+
+              border border-cyan-400/20
+              shadow-[0_0_30px_rgba(34,211,238,0.12)]
+
+              overflow-hidden
             "
           >
+            {/* holographic glow */}
+            <div
+              className="
+                absolute inset-0
+                bg-gradient-to-br
+                from-cyan-400/10
+                via-transparent
+                to-blue-500/10
+                pointer-events-none
+              "
+            />
+
+
             <img
               src={highlevel}
               className="
-              absolute inset-0
-              h-full w-full rounded-2xl
-            "
-            />
-            <div
-              className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-[#041827]/70
-              via-[#082f49]/45
-              to-transparent
-            "
+                  relative z-10
+                  w-40 h-40
+                  rounded-full
+                  object-cover
+
+                  border border-cyan-300/30
+                  shadow-[0_0_25px_rgba(34,211,238,0.25)]
+                "
             />
 
-            <div className="relative bg-black-300/50 space-y-4 rounded-[calc(theme(borderRadius.2xl)-1.5px)]  p-7 md:h-40">
-              <h1 className="font-['Orbitron'] text-3xl font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.25)]">High-Level <br /> Design </h1>
-              <p className='text-md font-medium tracking-wide leading-relaxed text-white'>Generates robust high-level architecture and system design diagrams</p>
+            <div className="relative z-10 space-y-3">
+              <h1
+                className="
+        font-['Orbitron']
+        text-2xl font-bold
+        uppercase tracking-[0.15em]
+        text-white
+      "
+              >
+                High-Level Design
+              </h1>
+
+              <p className="text-cyan-100/75 leading-relaxed">
+                Generates robust high-level architecture
+                <br />
+                and system design diagrams
+              </p>
             </div>
           </div>
         ),
@@ -142,31 +195,63 @@ function OurAgents({ className }) {
         offset: "sm",
         node: (
           <div
-            className=" relative
-              rounded-2xl p-6
-              border border-cyan-400/10 
-              overflow-hidden 
+            className="
+              relative w-full max-w-sm mx-auto
+              p-6 rounded-[32px]
+
+              flex flex-col items-center text-center gap-5
+
+              bg-white/[0.06]
+              backdrop-blur-2xl
+
+              border border-cyan-400/20
+              shadow-[0_0_30px_rgba(34,211,238,0.12)]
+
+              overflow-hidden
             "
           >
+            {/* holographic glow */}
+            <div
+              className="
+                absolute inset-0
+                bg-gradient-to-br
+                from-cyan-400/10
+                via-transparent
+                to-indigo-500/10
+                pointer-events-none
+              "
+            />
+
             <img
               src={lowlevel}
               className="
-              absolute inset-0
-              h-full w-full rounded-2xl
-            "
+                relative z-10
+                w-40 h-40
+                rounded-full
+                object-cover
+
+                border border-cyan-300/30
+                shadow-[0_0_25px_rgba(34,211,238,0.25)]
+              "
             />
-            <div
-              className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-[#041827]/70
-              via-[#082f49]/45
-              to-transparent
-            "
-            />
-            <div className="relative bg-black-300/50 space-y-4 rounded-[calc(theme(borderRadius.2xl)-1.5px)]  p-7 md:h-40">
-              <h1 className="font-['Orbitron'] text-3xl font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.25)]">Low-Level <br/> Design </h1>
-              <p className='text-md font-medium tracking-wide leading-relaxed text-white'>Produces detailed component-level designs and technical diagrams</p>
+
+            <div className="relative z-10 space-y-3">
+              <h1
+                className="
+                  font-['Orbitron']
+                  text-2xl font-bold
+                  uppercase tracking-[0.15em]
+                  text-white
+                "
+              >
+                Low-Level Design
+              </h1>
+
+              <p className="text-cyan-100/75 leading-relaxed">
+                Produces detailed component-level designs
+                <br />
+                and technical diagrams
+              </p>
             </div>
           </div>
         ),
@@ -175,32 +260,64 @@ function OurAgents({ className }) {
         key: "ui",
         offset: null,
         node: (
-           <div
-            className=" relative
-              rounded-2xl p-6
-              border border-cyan-400/10 
-              overflow-hidden 
+          <div
+            className="
+              relative w-full max-w-sm mx-auto
+              p-6 rounded-[32px]
+
+              flex flex-col items-center text-center gap-5
+
+              bg-white/[0.06]
+              backdrop-blur-2xl
+
+              border border-cyan-400/20
+              shadow-[0_0_20px_rgba(34,211,238,0.10)]
+
+              overflow-hidden
             "
           >
+            {/* holographic glow */}
+            <div
+              className="
+                absolute inset-0
+                bg-gradient-to-br
+                from-cyan-400/10
+                via-transparent
+                to-violet-500/10
+                pointer-events-none
+              "
+            />
+
             <img
               src={ui}
               className="
-              absolute inset-0
-              h-full w-full rounded-2xl
+              relative z-10
+              w-40 h-40
+              rounded-full
+              object-cover
+
+              border border-cyan-300/30
+              shadow-[0_0_25px_rgba(34,211,238,0.20)]
             "
             />
-            <div
-              className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-[#041827]/70
-              via-[#082f49]/45
-              to-transparent
-            "
-            />
-            <div className="relative bg-black-300/50 space-y-4 rounded-[calc(theme(borderRadius.2xl)-1.5px)]  p-7 md:h-40">
-              <h1 className="font-['Orbitron'] text-3xl font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.25)]">UI/UX & Usability <br/> Design </h1>
-              <p className='text-md font-medium tracking-wide leading-relaxed text-white'>Creates intuitive wireframes and user-centered interface designs</p>
+
+            <div className="relative z-10 space-y-3">
+              <h1
+                className="
+                  font-['Orbitron']
+                  text-2xl font-bold
+                  uppercase tracking-[0.15em]
+                  text-white
+                "
+              >
+                UI/UX & Usability
+              </h1>
+
+              <p className="text-cyan-100/75 leading-relaxed">
+                Creates intuitive wireframes and
+                <br />
+                user-centered interface designs
+              </p>
             </div>
           </div>
         ),
@@ -211,7 +328,7 @@ function OurAgents({ className }) {
 
 
   return (
-    <div className='relative scroll-section rounded-t-4xl  z-10 bg-taupe-950 min-h-screen w-full'>
+    <div className='relative scroll-section rounded-t-4xl  z-10 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.08)_0%,transparent_55%),linear-gradient(to_bottom,#102235_0%,#0b1726_22%,#050c15_55%,#000000_100%)] min-h-screen w-full'>
 
       <h1 className='text-white text-7xl uppercase font-bold w-full text-center pt-10'
         style={{ fontFamily: 'Orbitron, sans-serif' }}>Our <span className='text-cyan-300'>Agents</span>
@@ -225,7 +342,7 @@ function OurAgents({ className }) {
               <div className="absolute top-0 bottom-0 w-[4px] bg-white/10 rounded-full overflow-hidden">
                 <div
                   ref={trackRef}
-                  className="w-full h-full origin-top scale-y-0 bg-cyan-600"
+                  className="w-full h-full origin-top scale-y-0 bg-cyan-500"
                 />
               </div>
             </div>
@@ -241,12 +358,12 @@ function OurAgents({ className }) {
                 return (
                   <div
                     key={item.key}
-                    className={`grid md:grid-cols-[1fr_auto_1fr] grid-cols-1 md:gap-x-4  ${rowOffset} ${i !== 0 ? "-mt-10" : ""}`}
+                    className={`grid md:grid-cols-[1fr_auto_1fr] grid-cols-1 md:gap-x-4  ${rowOffset} ${i !== 0 ? "-mt-16" : ""}`}
                   >
                     <div
                       className={`tl-item max-w-[40rem]  w-full ${left
-                        ? "tl-left md:col-start-1 md:justify-self-end md:mr-6"
-                        : "tl-right md:col-start-3 md:justify-self-start md:ml-6"
+                        ? "tl-left md:col-start-1 md:justify-self-end md:mr-2"
+                        : "tl-right md:col-start-3 md:justify-self-start md:ml-2"
                         }`}
                     >
                       {item.node}
