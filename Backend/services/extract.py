@@ -1,46 +1,142 @@
-import ollama
 import json
-import re
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 
-def clean_json(content):
-    content = content.replace("```json", "").replace("```", "").strip()
-    match = re.search(r"\{.*\}", content, re.DOTALL)
-    return match.group(0) if match else content
+load_dotenv()
+
+# 🔹 Single LLM instance (loaded once)
+llm = ChatGroq(
+    model="llama-3.1-8b-instant",
+    api_key=os.getenv("GROQ_API_KEY"),
+    temperature=0
+)
 
 
-def extract_requirements(transcript: str):
-    prompt = f"""
-You are a software requirements analyst.
+def build_prompt(transcript: str) -> str:
+    return f"""
+You are a senior software requirements analyst.
 
-Extract ONLY software/system-related requirements.
+Your task is to extract and classify requirements from the given conversation.
 
-If the conversation does NOT contain software requirements,
-return EXACTLY this JSON and NOTHING ELSE:
+STRICT DEFINITIONS:
+
+Functional Requirements (FR):
+- Describe WHAT the system must do
+- Features, behaviors, user actions
+- Must start with: "The system shall..."
+
+Non-Functional Requirements (NFR):
+- Describe HOW the system performs
+- Performance, scalability, security, reliability, usability
+
+IMPORTANT NFR RULES:
+- Only include valid system quality attributes
+- DO NOT include:
+  - project timelines
+  - development strategies
+  - business goals
+  - vague statements
+
+IMPORTANT FORMATTING RULES:
+- Each requirement must represent ONLY ONE action
+- DO NOT combine multiple actions
+- Each must be independently testable
+- Do NOT duplicate items
+- Use clear and professional language
+
+CRITICAL:
+- Return ONLY valid JSON
+- Do NOT include any explanation or text
+- Your response must start with '{' and end with '}'
+- If you include anything else, the response is INVALID
+
+OUTPUT FORMAT (STRICT JSON ONLY):
 
 {{
-  "functional": [],
-  "non_functional": []
+  "functional": [
+    {{
+      "id": "FR1",
+      "description": "The system shall ..."
+    }}
+  ],
+  "non_functional": [
+    {{
+      "id": "NFR1",
+      "description": "The system shall ..."
+    }}
+  ]
 }}
 
-Rules:
-- Output MUST be valid JSON
-- No explanations
-- No markdown
-- No extra text
+If no valid requirements exist, return empty arrays.
 
 Conversation:
 {transcript}
 """
 
-    response = ollama.chat(
-        model="gemma3:4b",
-        messages=[{"role": "user", "content": prompt}]
-    )
 
-    content = response['message']['content']
-    cleaned = clean_json(content)
+def validate_requirements(data):
+    if not isinstance(data, dict):
+        return False
+
+    if "functional" not in data or "non_functional" not in data:
+        return False
+
+    for item in data["functional"]:
+        if "id" not in item or "description" not in item:
+            return False
+
+    for item in data["non_functional"]:
+        if "id" not in item or "description" not in item:
+            return False
+
+    return True
+
+
+# Optional safety filter
+INVALID_NFR_KEYWORDS = [
+    "timeline",
+    "phase",
+    "priority",
+    "development",
+    "plan"
+]
+
+
+def filter_nfrs(nfrs):
+    cleaned = []
+    for item in nfrs:
+        desc = item["description"].lower()
+        if not any(word in desc for word in INVALID_NFR_KEYWORDS):
+            cleaned.append(item)
+    return cleaned
+
+
+def extract_requirements(transcript: str):
+    prompt = build_prompt(transcript)
+
+    response = llm.invoke(prompt)
+    content = response.content.strip()
+
+    # minimal cleanup
+    content = content.replace("```json", "").replace("```", "").strip()
 
     try:
-        return json.loads(cleaned)
-    except:
-        return {"error": "invalid json", "raw": content}
+        data = json.loads(content)
+    except Exception:
+        return {
+            "error": "invalid_json",
+            "raw": content
+        }
+
+    # validate structure
+    if not validate_requirements(data):
+        return {
+            "error": "invalid_structure",
+            "raw": content
+        }
+
+    # clean NFRs
+    data["non_functional"] = filter_nfrs(data["non_functional"])
+
+    return data

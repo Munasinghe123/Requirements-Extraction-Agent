@@ -1,39 +1,44 @@
 import React from 'react'
 import Logo from '../Images/logo.png';
 import { UserRound, CirclePlay } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
     return (
-        <div className="
-      absolute top-0 left-0 w-full z-50
+        <div className=" fixed
+       top-0 left-0 w-full 
       flex items-center justify-between
-      px-6 lg:px-30 
+      px-6 lg:px-30 z-10
     ">
+            <Link to='/'>
+                {/* Logo */}
+                
+                <img
+                    src={Logo}
+                    className="h-10 w-10 lg:h-20 lg:w-20 object-contain cursor-pointer"
+                    alt="logo"
+                />
+            </Link>
 
-            {/* Logo */}
-            <img
-                src={Logo}
-                className="h-10 w-10 lg:h-20 lg:w-20 object-contain"
-                alt="logo"
-            />
 
-             <span className="text-white/90 hover:text-white transition cursor-pointer">
+            <span className="text-white/80 hover:text-white transition cursor-pointer">
                 About
             </span>
 
-             <span className="text-white/90 hover:text-white transition cursor-pointer">
+            <span className="text-white/80 hover:text-white transition cursor-pointer">
                 Contact
             </span>
 
-            <span className="text-white/90 hover:text-white transition cursor-pointer">
+            <span className="text-white/80 hover:text-white transition cursor-pointer">
                 Features
             </span>
 
-            <span className="text-white/90 hover:text-white transition cursor-pointer">
+            <span className="text-white/80 hover:text-white transition cursor-pointer">
                 Examples
             </span>
 
-            <span className="text-white/90 hover:text-white transition cursor-pointer">
+            <span className="text-white/80 hover:text-white transition cursor-pointer">
                 Pricing
             </span>
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form,Query
-from controllers.processAudio import handle_audio_upload, transcribe_audio
+from controllers.audio_controller import handle_audio_upload
 
 router = APIRouter()
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import bro1 from './Images/bro1.jpg';
-import bro2 from './Images/bro2.jpg';
-import sis3 from './Images/sis3.jpg';
-import Hero from './Images/hero.png';
-import HeroCanvas from './components/HeroCanvas';
+import bro1 from '../Images/bro1.jpg';
+import bro2 from '../Images/bro2.jpg';
+import sis3 from '../Images/sis3.jpg';
+
+import roboImage from '../Images/hero.png'
 
 
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,8 @@ function LandingPage() {
     const navigate = useNavigate()
 
     return (
-        <div className='relative h-screen w-full grid grid-cols-2 bg-transparent  px-30'>
+        <div className='hero relative h-screen w-full grid grid-cols-2 bg-transparent z-0  xl:pl-30'>
+
             <div className='relative h-full flex items-start justify-center flex-col '>
                 <div className='space-y-8 -mt-11'>
                     <h1 className='text-white text-7xl uppercase font-bold'
@@ -27,7 +28,7 @@ function LandingPage() {
                         <button
                             onClick={() => navigate('/upload-audio')}
                             className="btn px-6 py-3 text-sm uppercase tracking-wider font-medium">
-                            Start Designing 
+                            Start Designing
                         </button>
 
                         <div className='flex items-center space-x-3'>
@@ -59,9 +60,16 @@ function LandingPage() {
 
             </div>
 
-            <div className='relative w-full'>
-                <HeroCanvas />
+            <div className='overflow-hidden h-[90%] absolute bottom-0 right-30'>
+                <img
+                    src={roboImage}
+                    className='w-full h-full object-contain'
+                />
             </div>
+
+            {/* <div className='relative w-full flex items-center justify-center h-full'>
+                <HeroCanvas />
+            </div> */}
         </div>
     )
 }
