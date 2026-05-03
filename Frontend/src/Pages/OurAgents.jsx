@@ -358,7 +358,7 @@ function OurAgents({ className }) {
                 return (
                   <div
                     key={item.key}
-                    className={`grid md:grid-cols-[1fr_auto_1fr] grid-cols-1 md:gap-x-4  ${rowOffset} ${i !== 0 ? "-mt-16" : ""}`}
+                    className={`grid md:grid-cols-[1fr_auto_1fr] grid-cols-1 md:gap-x-4  ${rowOffset} ${i !== 0 ? "-mt-20" : ""}`}
                   >
                     <div
                       className={`tl-item max-w-[40rem]  w-full ${left

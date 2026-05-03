@@ -7,15 +7,16 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <div className=" fixed
-       top-0 left-0 w-full z-0
+       top-0 left-0 w-full 
       flex items-center justify-between
-      px-6 lg:px-30 
+      px-6 lg:px-30 z-10
     ">
             <Link to='/'>
                 {/* Logo */}
+                
                 <img
                     src={Logo}
-                    className="h-10 w-10 lg:h-20 lg:w-20 object-contain"
+                    className="h-10 w-10 lg:h-20 lg:w-20 object-contain cursor-pointer"
                     alt="logo"
                 />
             </Link>
