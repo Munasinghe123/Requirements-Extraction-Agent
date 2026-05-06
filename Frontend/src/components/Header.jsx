@@ -13,7 +13,7 @@ function Header() {
     ">
             <Link to='/'>
                 {/* Logo */}
-                
+
                 <img
                     src={Logo}
                     className="h-10 w-10 lg:h-20 lg:w-20 object-contain cursor-pointer"
@@ -41,9 +41,10 @@ function Header() {
             <span className="text-white/80 hover:text-white transition cursor-pointer">
                 Pricing
             </span>
-
-            {/* Button */}
-            <button className=" flex items-center gap-3
+            
+            <Link to='/sign-in'>
+                {/* Button */}
+                <button className=" flex items-center gap-3
         relative px-5 py-2 
         text-sm font-medium uppercase tracking-[2px]
         text-white
@@ -55,17 +56,17 @@ function Header() {
         hover:border-cyan-400/60
         hover:shadow-[0_0_20px_rgba(34,211,238,0.4)]
       ">
-                <UserRound size={16} strokeWidth={2} />
-                <span className="relative z-10">Sign In</span>
+                    <UserRound size={16} strokeWidth={2} />
+                    <span className="relative z-10">Sign In</span>
 
-                <span className="
+                    <span className="
           absolute inset-0 
           bg-gradient-to-r from-cyan-400/0 via-cyan-400/30 to-purple-500/0
           opacity-0 hover:opacity-100
           transition duration-500
         "></span>
-            </button>
-
+                </button>
+            </Link>
         </div>
     )
 }

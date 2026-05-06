@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.audio_routes import router
+from routes.refine_routes import refine_routes
 
 app = FastAPI()
 
@@ -15,3 +16,4 @@ app.add_middleware(
 print("backend running")
 
 app.include_router(router)
+app.include_router(refine_routes)
