@@ -5,7 +5,8 @@ from graph.nodes import (
     diarization_node,
     extraction_node,
     refine_node,
-    approve_node
+    generate_srs_node,
+    generate_srs_pdf_node
 )
 from graph.router import route_workflow
 
@@ -18,7 +19,8 @@ def build_graph():
     builder.add_node("diarize", diarization_node)
     builder.add_node("extract", extraction_node)
     builder.add_node("refine", refine_node)
-    builder.add_node("approve", approve_node)
+    builder.add_node("srs", generate_srs_node)
+    builder.add_node("generate_pdf", generate_srs_pdf_node)
     
     builder.set_entry_point("router")
     
@@ -35,8 +37,9 @@ def build_graph():
     # refine
     builder.add_edge("refine", END)
     
-    #approve
-    builder.add_edge("approve", END)
+    #srs
+    builder.add_edge("srs", "generate_pdf")
+    builder.add_edge("generate_pdf", END)
     
     return builder.compile()
     

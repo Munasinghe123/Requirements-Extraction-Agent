@@ -10,11 +10,7 @@ async def handle_audio_upload(file):
     result = graph.invoke({
         "mode": "extract",
         "audio_path": path,
-        "transcript": None,
-        "diarization": None,
-        "requirements": None,
-        "feedback": None,
-        "approval_status": None
+       
     })
 
     meeting_id=save_requirements(result["requirements"])

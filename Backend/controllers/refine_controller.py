@@ -10,12 +10,10 @@ async def refine_endpoint(req):
     
     result = graph.invoke({
         "mode": "refine",
-        "audio_path": None,
-        "transcript": None,
-        "diarization": None,
         "requirements": req.requirements,
         "feedback": req.feedback,
-        "approval_status": "rejected"
+        "approval_status": "rejected",
+        "meeting_id": req.meetingId
     })
     
     save_refined_version(req.meetingId,result["requirements"],req.feedback)    

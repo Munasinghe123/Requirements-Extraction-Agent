@@ -11,5 +11,5 @@ def route_workflow(state):
         return "refine"
     
     if state["mode"] == "approved":
-        return "approve"
+        return "srs"
    

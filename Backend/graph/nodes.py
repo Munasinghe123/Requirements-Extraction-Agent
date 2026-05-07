@@ -1,8 +1,11 @@
+from services.generate_srs import generate_srs
 from graph.state import GraphState
 from services.tanscribe import transcribe_audio
 from services.extract import extract_requirements
 from services.diarize import diarize_audio
 from services.refine_requirements import refine_requirements
+from services.meetings_service import get_latest_requirements
+from services.generate_srs_pdf import create_pdf
 
 
 def transcribe_node(state: GraphState):
@@ -30,8 +33,25 @@ def refine_node(state: GraphState):
         "requirements": updated
     }
     
-def approve_node(state: GraphState):
+def generate_srs_node(state):
+
+    latest = get_latest_requirements(
+        state["meeting_id"]
+    )
+
+    srs_text = generate_srs(latest)
 
     return {
-        "approval_status": "approved"
+        "srs_text": srs_text
+    }
+    
+def generate_srs_pdf_node(state: GraphState):
+
+    pdf_path = create_pdf(
+        state["srs_text"],
+        state["meeting_id"]
+    )
+
+    return {
+        "pdf_path": pdf_path
     }

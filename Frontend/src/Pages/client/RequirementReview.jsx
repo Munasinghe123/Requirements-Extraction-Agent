@@ -55,6 +55,27 @@ export default function RequirementReview() {
         setLoading(false)
     }
 
+    const handleApprove = async () => {
+
+        try {
+            setLoading(true)
+
+            const res = await axios.post(
+                "http://127.0.0.1:8000/approve-reqs",
+                {
+                    meeting_id: meetingId
+                }
+            )
+          
+            alert("Requirments approved successfully!")
+
+        } catch (err) {
+            console.error(err)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
         <>
             <div className="min-h-screen w-full pt-28 pb-10">
@@ -160,6 +181,8 @@ export default function RequirementReview() {
                             transition-all duration-300
                             hover:border-cyan-400/60
                             hover:shadow-[0_0_20px_rgba(34,211,238,0.4)]"
+
+                                onClick={handleApprove}
                             >
                                 Approve
                             </button>
