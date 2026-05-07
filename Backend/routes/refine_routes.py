@@ -12,6 +12,7 @@ refine_routes = APIRouter()
 class RefineRequest(BaseModel):
     requirements: Dict[str, Any]
     feedback: str
+    meetingId: str
 
 @refine_routes.post('/refine-reqs')
 async def refine_extracted_requirements(req: RefineRequest):

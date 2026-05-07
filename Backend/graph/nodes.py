@@ -29,3 +29,9 @@ def refine_node(state: GraphState):
     return {
         "requirements": updated
     }
+    
+def approve_node(state: GraphState):
+
+    return {
+        "approval_status": "approved"
+    }

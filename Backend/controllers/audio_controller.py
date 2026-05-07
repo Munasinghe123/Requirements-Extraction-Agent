@@ -8,6 +8,7 @@ async def handle_audio_upload(file):
     path = save_file(file)
 
     result = graph.invoke({
+        "mode": "extract",
         "audio_path": path,
         "transcript": None,
         "diarization": None,
