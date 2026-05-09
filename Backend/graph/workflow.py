@@ -6,7 +6,8 @@ from graph.nodes import (
     extraction_node,
     refine_node,
     generate_srs_node,
-    generate_srs_pdf_node
+    generate_srs_pdf_node,
+    document_node
 )
 from graph.router import route_workflow
 
@@ -16,6 +17,7 @@ def build_graph():
 
     builder.add_node("router", lambda state: state)
     builder.add_node("transcribe", transcribe_node)
+    builder.add_node("document", document_node)
     builder.add_node("diarize", diarization_node)
     builder.add_node("extract", extraction_node)
     builder.add_node("refine", refine_node)
@@ -29,9 +31,14 @@ def build_graph():
         route_workflow
     )
     
-    # extraction
+    #audio extraction
     builder.add_edge("transcribe", "diarize")
     builder.add_edge("diarize", "extract")
+    # builder.add_edge("extract", END)
+    
+    #document extraction
+    builder.add_edge("document", "extract")
+    
     builder.add_edge("extract", END)
     
     # refine

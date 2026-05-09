@@ -17,7 +17,7 @@ def build_prompt(transcript: str) -> str:
     return f"""
 You are a senior software requirements analyst.
 
-Your task is to extract and classify requirements from the given conversation.
+Your task is to extract and classify software requirements from the given input text.
 
 STRICT DEFINITIONS:
 
@@ -32,7 +32,7 @@ Non-Functional Requirements (NFR):
 
 IMPORTANT NFR RULES:
 - Only include valid system quality attributes (performance, scalability, security, reliability, usability)
-- If NFRs are NOT explicitly stated, infer reasonable and realistic NFRs based on the system context
+- If NFRs are weakly implied by the context, infer only highly reasonable and commonly expected system quality attributes.
 - Ensure 3–5 meaningful NFRs when possible
 - Do NOT invent unrealistic or unrelated constraints
 - Avoid vague terms like "good", "decent", "efficient"
@@ -76,7 +76,7 @@ OUTPUT FORMAT (STRICT JSON ONLY):
 
 If no valid requirements exist, return empty arrays.
 
-Conversation:
+Input Text:
 {transcript}
 """
 

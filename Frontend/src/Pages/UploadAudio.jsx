@@ -16,7 +16,7 @@ function UploadAudio() {
         formData.append("file", file);
 
         try {
-            const res = await axios.post("http://127.0.0.1:8000/process-audio", formData, {
+            const res = await axios.post("http://127.0.0.1:8000/extract-requirements", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -40,7 +40,7 @@ function UploadAudio() {
             <div className='relative h-full w-full grid lg:grid-cols-2 grid-cols-1 xl:px-30  pt-20'>
                 <div className='flex items-start justify-center w-full h-full flex-col  space-y-10'>
                     <h1 className='text-white text-6xl uppercase font-bold'
-                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn audio into <span className='text-cyan-300'>intelligent results</span>
+                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn Audio And documents into <span className='text-cyan-300'>intelligent results</span>
                     </h1>
                     <div className='w-full max-w-md bg-gray-800/60 backdrop-blur-md border border-cyan-900 rounded-2xl p-8 shadow-xl'>
 
@@ -70,7 +70,7 @@ function UploadAudio() {
 
                         {reviewLink && (
                             <div className="mt-6 text-white">
-                                <p className="mb-2">✅ Requirements extracted!</p>
+                                <p className="mb-2">Requirements extracted!</p>
 
                                 <p className="text-sm text-gray-400 mb-2">
                                     Share this link with client:
