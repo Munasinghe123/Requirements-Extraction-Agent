@@ -10,6 +10,9 @@ class GraphState(TypedDict):
     transcript: Optional[str]
     diarization: Optional[List[Dict]]
     
+    #document
+    document_path: Optional[str]
+    
     # requirments 
     requirements: Optional[Dict]
     feedback: Optional[str]

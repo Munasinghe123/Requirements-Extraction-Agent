@@ -6,11 +6,21 @@ from services.diarize import diarize_audio
 from services.refine_requirements import refine_requirements
 from services.meetings_service import get_latest_requirements
 from services.generate_srs_pdf import create_pdf
+from services.read_document import read_document
 
 
 def transcribe_node(state: GraphState):
     transcript = transcribe_audio(state["audio_path"])
     return {"transcript": transcript}
+
+def document_node(state: GraphState):
+    text = read_document(
+        state["document_path"]
+    )
+
+    return {
+        "transcript": text
+    }
 
 
 def diarization_node(state: GraphState):
@@ -55,3 +65,4 @@ def generate_srs_pdf_node(state: GraphState):
     return {
         "pdf_path": pdf_path
     }
+    
