@@ -37,10 +37,10 @@ function UploadAudio() {
     return (
         <div className='relative h-screen w-full '>
 
-            <div className='relative h-full w-full grid lg:grid-cols-2 grid-cols-1 xl:px-30  pt-20'>
-                <div className='flex items-start justify-center w-full h-full flex-col  space-y-10'>
+            <div className='relative min-h-full w-full grid lg:grid-cols-2 grid-cols-1 xl:px-30 pb-5 pt-20'>
+                <div className='flex items-start justify-center w-full h-full flex-col space-y-10'>
                     <h1 className='text-white text-6xl uppercase font-bold'
-                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn Audio And documents into <span className='text-cyan-300'>intelligent results</span>
+                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn <span className='text-cyan-300'>Audio</span>  And <span className='text-cyan-300'>Documents</span> into intelligent <span className='text-cyan-300'> results</span>
                     </h1>
                     <div className='w-full max-w-md bg-gray-800/60 backdrop-blur-md border border-cyan-900 rounded-2xl p-8 shadow-xl'>
 
