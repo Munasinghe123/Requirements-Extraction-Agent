@@ -5,6 +5,7 @@ import audio from '../Images/audio.png'
 function UploadAudio() {
     const [file, setFile] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [reviewLink, setReviewLink] = useState("")
 
     const handleUpload = async () => {
         if (!file) return;
@@ -15,14 +16,17 @@ function UploadAudio() {
         formData.append("file", file);
 
         try {
-            const res = await axios.post("http://127.0.0.1:8000/process-audio", formData, {
+            const res = await axios.post("http://127.0.0.1:8000/extract-requirements", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             });
 
-            const data = await res.data;
-            console.log("returned data are, ", data);
+            const data = res.data;
+
+            const link = `${window.location.origin}/requirements-review/${data.meeting_id}`
+
+            setReviewLink(link)
         } catch (err) {
             console.error(err);
         }
@@ -33,10 +37,10 @@ function UploadAudio() {
     return (
         <div className='relative h-screen w-full '>
 
-            <div className='relative h-full w-full grid lg:grid-cols-2 grid-cols-1 xl:px-30  pt-20'>
-                <div className='flex items-start justify-center w-full h-full flex-col  space-y-10'>
-                     <h1 className='text-white text-6xl uppercase font-bold'
-                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn audio into <span className='text-cyan-300'>intelligent results</span>  
+            <div className='relative min-h-full w-full grid lg:grid-cols-2 grid-cols-1 xl:px-30 pb-5 pt-20'>
+                <div className='flex items-start justify-center w-full h-full flex-col space-y-10'>
+                    <h1 className='text-white text-6xl uppercase font-bold'
+                        style={{ fontFamily: 'Orbitron, sans-serif' }}>Turn <span className='text-cyan-300'>Audio</span>  And <span className='text-cyan-300'>Documents</span> into intelligent <span className='text-cyan-300'> results</span>
                     </h1>
                     <div className='w-full max-w-md bg-gray-800/60 backdrop-blur-md border border-cyan-900 rounded-2xl p-8 shadow-xl'>
 
@@ -63,6 +67,32 @@ function UploadAudio() {
                         >
                             {loading ? "Processing..." : "Upload & Process"}
                         </button>
+
+                        {reviewLink && (
+                            <div className="mt-6 text-white">
+                                <p className="mb-2">Requirements extracted!</p>
+
+                                <p className="text-sm text-gray-400 mb-2">
+                                    Share this link with client:
+                                </p>
+
+                                <div className="flex items-center gap-2">
+                                    <input
+                                        type="text"
+                                        value={reviewLink}
+                                        readOnly
+                                        className="w-full px-3 py-2 rounded bg-gray-900 text-sm border border-gray-700"
+                                    />
+
+                                    <button
+                                        onClick={() => navigator.clipboard.writeText(reviewLink)}
+                                        className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 rounded"
+                                    >
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                        )}
 
                     </div>
                 </div>

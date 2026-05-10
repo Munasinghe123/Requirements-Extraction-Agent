@@ -5,7 +5,7 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-# 🔹 Single LLM instance (loaded once)
+
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
     api_key=os.getenv("GROQ_API_KEY"),
@@ -17,7 +17,9 @@ def build_prompt(transcript: str) -> str:
     return f"""
 You are a senior software requirements analyst.
 
-Your task is to extract and classify requirements from the given conversation.
+Your task is to extract and classify software requirements from the given input text and
+find who the end users are.
+
 
 STRICT DEFINITIONS:
 
@@ -31,12 +33,18 @@ Non-Functional Requirements (NFR):
 - Performance, scalability, security, reliability, usability
 
 IMPORTANT NFR RULES:
-- Only include valid system quality attributes
+- Only include valid system quality attributes (performance, scalability, security, reliability, usability)
+- If NFRs are weakly implied by the context, infer only highly reasonable and commonly expected system quality attributes.
+- Ensure 3–5 meaningful NFRs when possible
+- Do NOT invent unrealistic or unrelated constraints
+- Avoid vague terms like "good", "decent", "efficient"
+- Prefer clear and specific descriptions
+
 - DO NOT include:
   - project timelines
   - development strategies
   - business goals
-  - vague statements
+  
 
 IMPORTANT FORMATTING RULES:
 - Each requirement must represent ONLY ONE action
@@ -70,7 +78,7 @@ OUTPUT FORMAT (STRICT JSON ONLY):
 
 If no valid requirements exist, return empty arrays.
 
-Conversation:
+Input Text:
 {transcript}
 """
 
@@ -93,7 +101,7 @@ def validate_requirements(data):
     return True
 
 
-# Optional safety filter
+
 INVALID_NFR_KEYWORDS = [
     "timeline",
     "phase",
@@ -118,7 +126,6 @@ def extract_requirements(transcript: str):
     response = llm.invoke(prompt)
     content = response.content.strip()
 
-    # minimal cleanup
     content = content.replace("```json", "").replace("```", "").strip()
 
     try:
@@ -129,14 +136,13 @@ def extract_requirements(transcript: str):
             "raw": content
         }
 
-    # validate structure
     if not validate_requirements(data):
         return {
             "error": "invalid_structure",
             "raw": content
         }
 
-    # clean NFRs
+   
     data["non_functional"] = filter_nfrs(data["non_functional"])
 
     return data

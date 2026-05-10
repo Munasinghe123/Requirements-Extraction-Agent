@@ -11,3 +11,4 @@ build/
 test.mp3
 *.mp3
 temp/
+generated_pdfs/
