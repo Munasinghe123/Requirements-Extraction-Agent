@@ -21,13 +21,13 @@ function LandingPage() {
                         style={{ fontFamily: 'Orbitron, sans-serif' }}>From <span className='text-cyan-300'>Requirements</span>  to <span className='text-cyan-300'>Design </span>
                     </h1>
                     <p className='text-white/80 max-w-md text-base leading-relaxed'>
-                        Turn raw requirements into structured wireframes, LLD, and HLD ready to build, easy to understand, and delivered in seconds.
+                        Turn raw requirements into structured SRS, LLD, HLD and wireframes ready to build, easy to understand, and delivered in seconds.
                     </p>
 
                     <div className='flex space-x-10'>
                         <button
                             onClick={() => navigate('/upload-audio')}
-                            className="btn px-6 py-3 text-sm uppercase tracking-wider font-medium">
+                            className="btn  px-6 py-3 text-sm uppercase tracking-wider font-medium">
                             Start Designing
                         </button>
 
