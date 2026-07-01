@@ -18,6 +18,6 @@ def diarize_audio(path):
             "end": turn.end,
             "speaker": speaker
         })
-    # print(results)    
+    print(results)    
 
     return results

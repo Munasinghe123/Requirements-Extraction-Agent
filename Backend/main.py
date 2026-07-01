@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.audio_routes import router
+from routes.input_routes import router
 from routes.refine_routes import refine_routes
 from routes.approve_routes import approve_routes
 

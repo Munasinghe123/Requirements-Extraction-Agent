@@ -125,7 +125,7 @@ def extract_requirements(transcript: str):
     response = llm.invoke(prompt)
     content = response.content.strip()
     
-    print("LLM Response:", content) 
+    # print("LLM Response:", content) 
 
     content = content.replace("```json", "").replace("```", "").strip()
 

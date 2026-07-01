@@ -44,7 +44,7 @@ function UploadAudio() {
                     </h1>
                     <div className='w-full max-w-md bg-gray-800/60 backdrop-blur-md border border-cyan-900 rounded-2xl p-8 shadow-xl'>
 
-                        <label className='flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer hover:border-cyan-700 transition'>
+                        <div className='flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer hover:border-cyan-700 transition'>
                             <input
                                 type="file"
                                 className='hidden'
@@ -54,7 +54,7 @@ function UploadAudio() {
                             <p className='text-gray-400'>
                                 {file ? file.name : "Click or drag audio file here"}
                             </p>
-                        </label>
+                        </div>
 
                         <button
                             onClick={handleUpload}
