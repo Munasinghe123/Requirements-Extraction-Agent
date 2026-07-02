@@ -17,8 +17,7 @@ def build_prompt(transcript: str) -> str:
     return f"""
 You are a senior software requirements analyst.
 
-Your task is to extract and classify software requirements from the given input text and
-find who the end users are.
+Your task is to extract and classify software requirements from the given input text.
 
 
 STRICT DEFINITIONS:
@@ -125,6 +124,8 @@ def extract_requirements(transcript: str):
 
     response = llm.invoke(prompt)
     content = response.content.strip()
+    
+    # print("LLM Response:", content) 
 
     content = content.replace("```json", "").replace("```", "").strip()
 
